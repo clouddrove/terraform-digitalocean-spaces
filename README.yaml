@@ -5,13 +5,13 @@
 #
 
 # Name of this project
-name : Terraform DigitalOcean VPC
+name : Terraform DigitalOcean spaces
 
 # License of this project
 license: "MIT"
 
 # Canonical GitHub repo
-github_repo: clouddrove/terraform-digitalocean-vpc
+github_repo: clouddrove/terraform-digitalocean-spaces
 
 # Badges to display
 badges:
@@ -24,7 +24,7 @@ badges:
 
 #  description of this project
 description: |-
-  VPCs are virtual networks containing resources that can communicate with each other in full isolation, using private IP addresses.
+  spaces are virtual networks containing resources that can communicate with each other in full isolation, using private IP addresses.
 
 # extra content
 include:
@@ -35,8 +35,8 @@ usage : |-
   ### Simple Example
   Here is an example of how you can use this module in your inventory structure:
   ```hcl
-        module "vpc" {
-        source            = "clouddrove/spaces/digitalocean"
+        module "spaces" {
+        source        = "clouddrove/spaces/digitalocean"
         name          = "clouddrove"
         environment   = "test"
         label_order   = ["name"]

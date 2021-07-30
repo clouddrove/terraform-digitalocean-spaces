@@ -2,8 +2,8 @@
 provider "digitalocean" {
   # You need to set this in your .bashrc
   # export DIGITALOCEAN_TOKEN="Your API TOKEN"
-  spaces_access_id  = "BI6Q4TQLWEMSLORURV43"
-  spaces_secret_key = "nPTGaHrFxacVxc4m/SlnQxl7QvgZ9ZtY2FNUd6nYGQo"
+  spaces_access_id  = "xxxxxxxxxxx"
+  spaces_secret_key = "xxxxxxxxxxxxxxxxxxxxxxxxx"
 }
 
 
