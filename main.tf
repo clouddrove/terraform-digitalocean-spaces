@@ -38,12 +38,6 @@ resource "digitalocean_spaces_bucket" "spaces" {
   region                = var.region
   acl                   = var.acl
   force_destroy         = var.force_destroy
-  #allowed_headers      = var.allowed_headers
-  #allowed_methodsccc   = var.allowed_methods
-  #allowed_origins      = var.allowed_origins
-  #max_age_seconds      = var.max_age_seconds
-  #cors_rule            = var.cors_rule
-  #lifecycle_rule       = var.lifecycle_rule
 
 }
 
