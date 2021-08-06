@@ -36,7 +36,8 @@ usage : |-
   Here is an example of how you can use this module in your inventory structure:
   ```hcl
         module "spaces" {
-        source        = "clouddrove/spaces/digitalocean"
+        source        = "terraform-do-modules/spaces/digitalocean"
+        version     = "0.15.0"
         name          = "clouddrove"
         environment   = "test"
         label_order   = ["name"]
