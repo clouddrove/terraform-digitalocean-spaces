@@ -22,7 +22,7 @@ locals {
 #Module      : LABEL
 #Description : Terraform label module variables.
 module "labels" {
-  source = ""
+  source      = ""
   version     = "0.15.0"
   name        = var.name
   environment = var.environment
