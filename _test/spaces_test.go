@@ -1,5 +1,5 @@
 // Managed By : CloudDrove
-// Description : This Terratest is used to test the Terraform SES module.
+// Description : This Terratest is used to test the Terraform spaces module.
 // Copyright @ CloudDrove. All Right Reserved.
 package test
 
@@ -28,5 +28,5 @@ func Test(t *testing.T) {
 	Arn := terraform.Output(t, terraformOptions, "urn")
 
 	// Check that we get back the outputs that we expect
-	assert.Contains(t, Arn, "do:vpc:")
+	assert.Contains(t, Arn, "do:spaces:")
 }
