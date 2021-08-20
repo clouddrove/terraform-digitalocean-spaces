@@ -4,11 +4,12 @@
 
 
 <h1 align="center">
-    Terraform DigitalOcean spaces
+    Terraform Digitalocean spaces
 </h1>
 
 <p align="center" style="font-size: 1.2rem;"> 
-Provides a bucket resource for Spaces, DigitalOcean's object storage product.     </p>
+    spaces are virtual networks containing resources that can communicate with each other in full isolation, using private IP addresses.
+     </p>
 
 <p align="center">
 
@@ -26,10 +27,10 @@ Provides a bucket resource for Spaces, DigitalOcean's object storage product.   
 <a href='https://facebook.com/sharer/sharer.php?u=https://github.com/clouddrove/terraform-digitalocean-spaces'>
   <img title="Share on Facebook" src="https://user-images.githubusercontent.com/50652676/62817743-4f64cb80-bb59-11e9-90c7-b057252ded50.png" />
 </a>
-<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+DigitalOcean+spaces&url=https://github.com/clouddrove/terraform-digitalocean-spaces'>
+<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+Digitalocean+spaces&url=https://github.com/clouddrove/terraform-digitalocean-spaces'>
   <img title="Share on LinkedIn" src="https://user-images.githubusercontent.com/50652676/62817742-4e339e80-bb59-11e9-87b9-a1f68cae1049.png" />
 </a>
-<a href='https://twitter.com/intent/tweet/?text=Terraform+DigitalOcean+spaces&url=https://github.com/clouddrove/terraform-digitalocean-spaces'>
+<a href='https://twitter.com/intent/tweet/?text=Terraform+Digitalocean+spaces&url=https://github.com/clouddrove/terraform-digitalocean-spaces'>
   <img title="Share on Twitter" src="https://user-images.githubusercontent.com/50652676/62817740-4c69db00-bb59-11e9-8a79-3580fbbf6d5c.png" />
 </a>
 
@@ -71,13 +72,14 @@ This module has a few dependencies:
 Here is an example of how you can use this module in your inventory structure:
 ```hcl
       module "spaces" {
-      source            = "terraform-do-modules/spaces/digitalocean"
-      version           = "0.15.0"
-      name              = "spaces"
-      environment       = "test"
-      label_order       = ["environment", "name"]
-      enable_spaces     = true
-      region            = "bangalore-1"
+      source        = "terraform-do-modules/spaces/digitalocean"
+      version       = "0.15.0"
+      name          = "clouddrove"
+      environment   = "test"
+      label_order   = ["name"]
+      acl           = "public-read"
+      force_destroy = true
+      region        = "nyc3"
     }
 ```
 
@@ -90,23 +92,30 @@ Here is an example of how you can use this module in your inventory structure:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| application | Application (e.g. `cd` or `clouddrove`). | `string` | `""` | no |
+| abort\_incomplete\_multipart\_upload\_days | Specifies the number of days after initiating a multipart upload when the multipart upload must be completed or else Spaces will abort the upload. | `number` | `null` | no |
+| acl | Canned ACL applied on bucket creation (private or public-read). | `string` | `null` | no |
+| attributes | Additional attributes (e.g. `1`). | `list(any)` | `[]` | no |
+| cors\_rule | CORS Configuration specification for this bucket | <pre>list(object({<br>    allowed_headers = list(string)<br>    allowed_methods = list(string)<br>    allowed_origins = list(string)<br>    expose_headers  = list(string)<br>    max_age_seconds = number<br>  }))</pre> | `null` | no |
+| date | pecifies the date/time after which you want applicable objects to expire. The argument uses RFC3339 format, e.g.(2020-03-22T15:03:55Z) or parts thereof e.g. 2019-02-28. | `string` | `null` | no |
 | delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | `string` | `"-"` | no |
-| description | A free-form text field up to a limit of 255 characters to describe the spaces. | `string` | `"spaces"` | no |
-| enable\_spaces | A boolean flag to enable/disable spaces. | `bool` | `true` | no |
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
-| label\_order | Label order, e.g. `name`,`application`. | `list` | `[]` | no |
+| expiration\_days | Specifies the number of days after object creation when the applicable objects will expire. | `number` | `null` | no |
+| expired\_object\_delete\_marker | On a versioned bucket (versioning-enabled or versioning-suspended bucket), setting this to true directs Spaces to delete expired object delete markers. | `string` | `""` | no |
+| force\_destroy | Unless true, the bucket will only be destroyed if empty (Defaults to false). | `bool` | `false` | no |
+| label\_order | Label order, e.g. `name`,`application`. | `list(any)` | `[]` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
-| region | The region to create spaces, like `london-1` , `bangalore-1` ,`newyork-3` `toronto-1`. | `string` | `"bangalore-1"` | no |
+| noncurrent\_version\_expiration | On a versioned bucket (versioning-enabled or versioning-suspended bucket), setting this to true directs Spaces to delete expired object delete markers. | `string` | `""` | no |
+| prefix | (Optional, Forces new resource) Creates a unique bucket name beginning with the specified prefix. | `string` | `null` | no |
+| region | The region to create VPC, like `london-1` , `bangalore-1` ,`newyork-3` `toronto-1`. | `string` | `""` | no |
+| versioning | (Optional) A state of versioning (documented below). | `bool` | `true` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| created\_at | The date and time of when the spaces was created. |
-| default | A boolean indicating whether or not the spaces is the default one for the region. |
-| id | The unique identifier for the spaces.. |
-| urn | The uniform resource name (URN) for the spaces. |
+| bucket\_domain\_name | The date and time of when the VPC was created. |
+| name | The date and time of when the VPC was created. |
+| urn | The uniform resource name (URN) for the VPC. |
 
 
 
