@@ -11,7 +11,6 @@ output "name" {
   description = "The date and time of when the VPC was created."
 }
 
-
 output "bucket_domain_name" {
   value       = join("", digitalocean_spaces_bucket.spaces.*.bucket_domain_name)
   description = "The date and time of when the VPC was created."

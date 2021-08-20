@@ -5,7 +5,7 @@
 #
 
 # Name of this project
-name : Terraform DigitalOcean spaces
+name : Terraform Digitalocean spaces
 
 # License of this project
 license: "MIT"
@@ -37,7 +37,7 @@ usage : |-
   ```hcl
         module "spaces" {
         source        = "terraform-do-modules/spaces/digitalocean"
-        version     = "0.15.0"
+        version       = "0.15.0"
         name          = "clouddrove"
         environment   = "test"
         label_order   = ["name"]

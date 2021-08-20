@@ -4,17 +4,16 @@
 
 
 <h1 align="center">
-    Terraform DigitalOcean VPC
+    Terraform DigitalOcean spaces
 </h1>
 
 <p align="center" style="font-size: 1.2rem;"> 
-    VPCs are virtual networks containing resources that can communicate with each other in full isolation, using private IP addresses.
-     </p>
+Provides a bucket resource for Spaces, DigitalOcean's object storage product.     </p>
 
 <p align="center">
 
 <a href="https://www.terraform.io">
-  <img src="https://img.shields.io/badge/Terraform-v0.13-green" alt="Terraform">
+  <img src="https://img.shields.io/badge/Terraform-v0.15-green" alt="Terraform">
 </a>
 <a href="LICENSE.md">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="Licence">
@@ -24,13 +23,13 @@
 </p>
 <p align="center">
 
-<a href='https://facebook.com/sharer/sharer.php?u=https://github.com/clouddrove/terraform-digitalocean-vpc'>
+<a href='https://facebook.com/sharer/sharer.php?u=https://github.com/clouddrove/terraform-digitalocean-spaces'>
   <img title="Share on Facebook" src="https://user-images.githubusercontent.com/50652676/62817743-4f64cb80-bb59-11e9-90c7-b057252ded50.png" />
 </a>
-<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+DigitalOcean+VPC&url=https://github.com/clouddrove/terraform-digitalocean-vpc'>
+<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+DigitalOcean+spaces&url=https://github.com/clouddrove/terraform-digitalocean-spaces'>
   <img title="Share on LinkedIn" src="https://user-images.githubusercontent.com/50652676/62817742-4e339e80-bb59-11e9-87b9-a1f68cae1049.png" />
 </a>
-<a href='https://twitter.com/intent/tweet/?text=Terraform+DigitalOcean+VPC&url=https://github.com/clouddrove/terraform-digitalocean-vpc'>
+<a href='https://twitter.com/intent/tweet/?text=Terraform+DigitalOcean+spaces&url=https://github.com/clouddrove/terraform-digitalocean-spaces'>
   <img title="Share on Twitter" src="https://user-images.githubusercontent.com/50652676/62817740-4c69db00-bb59-11e9-8a79-3580fbbf6d5c.png" />
 </a>
 
@@ -51,7 +50,7 @@ We have [*fifty plus terraform modules*][terraform_modules]. A few of them are c
 
 This module has a few dependencies: 
 
-- [Terraform 0.13](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Terraform 0.15](https://learn.hashicorp.com/terraform/getting-started/install.html)
 - [Go](https://golang.org/doc/install)
 - [github.com/stretchr/testify/assert](https://github.com/stretchr/testify)
 - [github.com/gruntwork-io/terratest/modules/terraform](https://github.com/gruntwork-io/terratest)
@@ -65,20 +64,19 @@ This module has a few dependencies:
 ## Examples
 
 
-**IMPORTANT:** Since the `master` branch used in `source` varies based on new modifications, we suggest that you use the release versions [here](https://github.com/clouddrove/terraform-digitalocean-vpc/releases).
+**IMPORTANT:** Since the `master` branch used in `source` varies based on new modifications, we suggest that you use the release versions [here](https://github.com/clouddrove/terraform-digitalocean-spaces/releases).
 
 
 ### Simple Example
 Here is an example of how you can use this module in your inventory structure:
 ```hcl
-      module "vpc" {
-      source            = "clouddrove/vpc/digitalocean"
-      version           = "0.13.0"
-      name              = "vpc"
-      application       = "clouddrove"
+      module "spaces" {
+      source            = "terraform-do-modules/spaces/digitalocean"
+      version           = "0.15.0"
+      name              = "spaces"
       environment       = "test"
-      label_order       = ["environment", "application", "name"]
-      enable_vpc        = true
+      label_order       = ["environment", "name"]
+      enable_spaces     = true
       region            = "bangalore-1"
     }
 ```
@@ -94,22 +92,21 @@ Here is an example of how you can use this module in your inventory structure:
 |------|-------------|------|---------|:--------:|
 | application | Application (e.g. `cd` or `clouddrove`). | `string` | `""` | no |
 | delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | `string` | `"-"` | no |
-| description | A free-form text field up to a limit of 255 characters to describe the VPC. | `string` | `"VPC"` | no |
-| enable\_vpc | A boolean flag to enable/disable vpc. | `bool` | `true` | no |
+| description | A free-form text field up to a limit of 255 characters to describe the spaces. | `string` | `"spaces"` | no |
+| enable\_spaces | A boolean flag to enable/disable spaces. | `bool` | `true` | no |
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
-| ip\_range | The range of IP addresses for the VPC in CIDR notation. Network ranges cannot overlap with other networks in the same account and must be in range of private addresses as defined in RFC1918. It may not be larger than /16 or smaller than /24. | `string` | `"10.10.0.0/16"` | no |
 | label\_order | Label order, e.g. `name`,`application`. | `list` | `[]` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
-| region | The region to create VPC, like `london-1` , `bangalore-1` ,`newyork-3` `toronto-1`. | `string` | `"bangalore-1"` | no |
+| region | The region to create spaces, like `london-1` , `bangalore-1` ,`newyork-3` `toronto-1`. | `string` | `"bangalore-1"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| created\_at | The date and time of when the VPC was created. |
-| default | A boolean indicating whether or not the VPC is the default one for the region. |
-| id | The unique identifier for the VPC.. |
-| urn | The uniform resource name (URN) for the VPC. |
+| created\_at | The date and time of when the spaces was created. |
+| default | A boolean indicating whether or not the spaces is the default one for the region. |
+| id | The unique identifier for the spaces.. |
+| urn | The uniform resource name (URN) for the spaces. |
 
 
 
@@ -125,9 +122,9 @@ You need to run the following command in the testing folder:
 
 
 ## Feedback 
-If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/clouddrove/terraform-digitalocean-vpc/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
+If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/clouddrove/terraform-digitalocean-spaces/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
 
-If you have found it worth your time, go ahead and give us a ★ on [our GitHub](https://github.com/clouddrove/terraform-digitalocean-vpc)!
+If you have found it worth your time, go ahead and give us a ★ on [our GitHub](https://github.com/clouddrove/terraform-digitalocean-spaces)!
 
 ## About us
 
